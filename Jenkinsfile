@@ -33,16 +33,12 @@ pipeline {
             sh 'curl localhost:5001'
                   }
                                          }
-        stage('Clean') {
-            steps {
-            sh 'docker stop pythonapplet'
-            sh 'docker container rm pythonapplet'
-                  }
-                                         }
                                          
     }
             post {
             always {
+                sh 'docker stop pythonapplet'
+                sh 'docker container rm pythonapplet'
                 cleanWs()
         }
     }
